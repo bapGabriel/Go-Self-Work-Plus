@@ -1,13 +1,11 @@
-import axios from "axios";
-
-const API_URL = "http://localhost:3000/auth";
+import API from "../services/apiWrapper";
 
 export async function loginRequest(data) {
-	const res = await axios.post(`${API_URL}/login`, data);
+	const res = await API.post(`/auth/login`, data);
 	return res.data;
 }
 
 export async function signupRequest(data) {
-	const res = await axios.post(`${API_URL}/signup`, data);
+	const res = await API.post(`/auth/signup`, data);
 	return res.data;
 }
