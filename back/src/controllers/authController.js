@@ -10,7 +10,7 @@ export const signup = async (req, res) => {
 		if (existingUser)
 			return res.status(400).json({ message: "Usuário já existe!" });
 
-		if (role !== "CLIENTE" || role !== "AUTONOMO") {
+		if (role !== "CLIENTE" && role !== "AUTONOMO") {
 			return res
 				.status(400)
 				.json({ message: "Tipo de usuário especificado inválido! " });
