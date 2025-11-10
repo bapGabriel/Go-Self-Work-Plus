@@ -3,11 +3,13 @@ import Home from "./views/Home";
 import Login from "./views/Auth/Login";
 import Signup from "./views/Auth/Signup";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./views/Navbar";
-import Footer from "./views/Footer";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { AuthProvider } from "./hooks/useAuth";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ManageServices from "./views/Autonomous/ManageServices";
+import CreateService from "./views/Autonomous/CreateService";
 
 function App() {
 	return (
@@ -30,6 +32,13 @@ function App() {
 								</ProtectedRoute>
 							}
 						/>
+						<Route element={<ProtectedRoute roles={["AUTONOMO"]} />}>
+							<Route path="/autonomous/services" element={<ManageServices />} />
+							<Route
+								path="/autonomous/services/create"
+								element={<CreateService />}
+							/>
+						</Route>
 					</Routes>
 				</div>
 				<Footer />

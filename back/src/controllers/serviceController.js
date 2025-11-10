@@ -27,6 +27,7 @@ export const create = async (req, res) => {
 export const read = async (req, res) => {
 	try {
 		const { id } = req.params;
+		const { user } = req.query;
 
 		if (id) {
 			const service = await Service.findById(id)
@@ -40,6 +41,15 @@ export const read = async (req, res) => {
 				return res.status(404).json({ message: "Serviço não encontrado." });
 
 			return res.json({ ...service });
+		}
+
+		if (user) {
+			const services = await Service.find({ userID: user })
+				.populate("userID", "name email")
+				.sort({ createdAt: -1 })
+				.lean();
+
+			return res.json(services);
 		}
 
 		const services = await Service.find()
