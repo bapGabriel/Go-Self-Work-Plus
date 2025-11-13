@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectDB } from "./config/db.js";
 
 import authRoutes from "./routes/authRoutes.js";
+import serviceRoutes from "./routes/serviceRoutes.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/auth", authRoutes);
+app.use("/service", serviceRoutes);
 
 app.get("/", (req, res) => {
 	res.send("Go Self Work Plus");
