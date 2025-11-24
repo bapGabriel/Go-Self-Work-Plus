@@ -11,3 +11,11 @@ export const authorize =
 
 		next();
 	};
+export const isClient = (req, res, next) => {
+	if (req.user.role !== "CLIENTE") {
+		return res
+			.status(403)
+			.json({ message: "Apenas clientes podem criar solicitações." });
+	}
+	next();
+};
