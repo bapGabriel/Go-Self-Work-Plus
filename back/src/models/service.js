@@ -24,6 +24,13 @@ const serviceSchema = new mongoose.Schema({
 		ref: "User",
 		required: true,
 	},
+
+	// 🔥 NOVO CAMPO: trabalho finalizado
+	completedWork: {
+		description: { type: String, trim: true },
+		photos: [{ type: String }], // lista de URLs
+		postedAt: { type: Date }
+	}
 });
 
 const Service = mongoose.model("Service", serviceSchema);
